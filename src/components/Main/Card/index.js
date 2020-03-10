@@ -1,12 +1,25 @@
 import React from "react";
 import { Container, Name, PlayerImg, Team } from "./styles";
 
-const Card = () => (
-	<Container>
-		<Name>Gordon "Snake" Hayward</Name>
-		<PlayerImg src="http://localhost:3008/gordon_hayward.png" alt="player_image" />
-		<Team>Boston Celtics</Team>
-	</Container>
-);
+export default class Card extends React.Component {
 
-export default Card;
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			name: props.name,
+			imageUrl: `http://localhost:3008/${props.imageUrl}`,
+			team: props.team
+		}
+	}
+
+	render() {
+		return (
+			<Container>
+				<Name>{this.state.name}</Name>
+				<PlayerImg src={this.state.imageUrl} alt="player_image" />
+				<Team>{this.state.team.name}</Team>
+			</Container>
+		)
+	}
+}

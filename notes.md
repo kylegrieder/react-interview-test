@@ -1,16 +1,29 @@
 Start Time: 9:46am 
-
-End Time:
+Pause for lunch: 11:45am
+Start again after lunch: 1pm 
+End Time: 
 
 Put any notes for us here  
 (If you feel you need to explain how / why you did something the way you did):
 
+---
+
 1st commit: 
 
-Converts Card to class. adds name, imageUrl and team props.
+PART I
 
-Converts Main to class. adds loading, players and teams props.
+- Converts Card to class. adds name, imageUrl and team props.
 
-adds code to Main class to retrieve teams and players, as well as map teams to player objects
+- Converts Main to class. adds loading, players and teams props.
 
-add package "axios" for http request simplicity
+- adds code to Main class to retrieve teams and players, as well as map teams to player objects
+
+- add package "axios" for http request simplicity
+
+---
+
+2nd commit: 
+
+PART II
+
+- 

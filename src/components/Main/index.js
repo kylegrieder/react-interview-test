@@ -1,10 +1,9 @@
 import React from "react";
 import axios from "axios"
 import _ from "lodash"
-import Search from "./Search";
 import Card from "./Card";
 import { Container } from "./styles";
-import { Jumbotron, Pagination, Spinner, InputGroup, FormControl, Button } from 'react-bootstrap'
+import { Jumbotron, Spinner, InputGroup, FormControl, Button } from 'react-bootstrap'
 
 export default class Main extends React.Component {
 
@@ -34,18 +33,16 @@ export default class Main extends React.Component {
                     </Container>
                 </Jumbotron>
 
-                <Pagination></Pagination>
-
                 <div className="container">
-
-                    <div className="row justify-content-start">
-                        <InputGroup className="col-10 offset-1 mb-3">
+                    <div className="row mr-3">
+                        <InputGroup className="col-10 mb-3">
                             <FormControl
                                 placeholder="Search"
                                 aria-label="Search"
                                 aria-describedby="basic-addon1"
                                 defaultValue={this.state.searchQuery}
-                                onChange={(e) => {this.state.searchQuery = e.target.value}}
+                                onChange={this.handleQueryUpdate}
+                                onKeyPress={(e) => {if (e.key === 'Enter') {this.handleSearch()}}}
                             />
                             <Button
                                 as={InputGroup.Append}
@@ -61,14 +58,16 @@ export default class Main extends React.Component {
                             this.state.players.map((player, index) => {
                                 return (
                                     <div className="col-auto mb-4" key={index} >
-                                        <Card name={player.name} imageUrl={player.image} team={player.team}/>
+                                        <Card
+                                            player={player}
+                                            teams={this.state.teams}
+                                        />
                                     </div>
                                 )
                             })
                         }
                     </div>
                 </div>
-                <Pagination></Pagination>
             </Container>
         )
     }
@@ -122,6 +121,10 @@ export default class Main extends React.Component {
     handleSearch = () => {
         this.setState({ activePage: 1 })
         this.getPlayers().then(data => this.handlePlayerResponse(data))
+    }
+
+    handleQueryUpdate = (event) => {
+        this.setState({searchQuery: event.target.value})
     }
 
     setPlayerTeams(data) {
